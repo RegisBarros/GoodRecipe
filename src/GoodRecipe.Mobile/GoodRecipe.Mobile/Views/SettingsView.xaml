@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GoodRecipe.Mobile.Views.SettingsView"
+             Icon="ic_perm_identity_black_48dp.png">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Aqui as configurações do usuário"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

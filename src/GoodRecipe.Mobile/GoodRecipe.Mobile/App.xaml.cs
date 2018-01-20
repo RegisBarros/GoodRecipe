@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using GoodRecipe.Mobile.Views;
 
 using Xamarin.Forms;
 
 namespace GoodRecipe.Mobile
 {
-	public partial class App : Application
+    public partial class App : Application
 	{
 		public App ()
 		{
 			InitializeComponent();
 
-			MainPage = new GoodRecipe.Mobile.MainPage();
+            MainPage = new MainView();
 		}
 
 		protected override void OnStart ()
