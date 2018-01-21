@@ -1,13 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:GoodRecipe.Mobile.Converters"
              x:Class="GoodRecipe.Mobile.Views.MyRecipesView"
              Icon="ic_receipt_black_48dp.png">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Lista de receitas do usuário, nessa pagina será possivel criar e editar as receitas"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:RecipeToImageValueConverter x:Key="imageConvert" Assembly="GoodRecipe.Mobile.Images" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Padding="20">
+        <ListView ItemsSource="{Binding Recipes}" HasUnevenRows="True" 
+                  GroupDisplayBinding="{Binding Key}" IsGroupingEnabled="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell Text="{Binding Title}"
+                               Detail="{Binding Category.Title}"
+                               ImageSource="{Binding Picture, Converter={StaticResource imageConvert}}"
+                               TextColor="Black"
+                               DetailColor="Gray"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>

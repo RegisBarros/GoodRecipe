@@ -5,6 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\blueberry-muffins.jpg" />
+    <None Remove="Images\burger.jpg" />
+    <None Remove="Images\eggs-benedict.jpg" />
+    <None Remove="Images\ham.jpg" />
+    <None Remove="Images\potato-salad.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\blueberry-muffins.jpg" />
+    <EmbeddedResource Include="Images\burger.jpg" />
+    <EmbeddedResource Include="Images\eggs-benedict.jpg" />
+    <EmbeddedResource Include="Images\ham.jpg" />
+    <EmbeddedResource Include="Images\potato-salad.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Naxam.BottomTabbedPage" Version="0.1.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
   </ItemGroup>
