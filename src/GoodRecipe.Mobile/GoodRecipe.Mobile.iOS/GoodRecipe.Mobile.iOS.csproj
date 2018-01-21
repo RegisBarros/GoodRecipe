@@ -164,4 +164,16 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_search_48pt_3x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add_white_48pt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add_white_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add_white_48pt_3x.png" />
+  </ItemGroup>
 </Project>

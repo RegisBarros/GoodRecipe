@@ -1,4 +1,5 @@
 ﻿using GoodRecipe.Mobile.ViewModels;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,6 +26,11 @@ namespace GoodRecipe.Mobile.Views
             lstRecipes.IsRefreshing = !lstRecipes.IsRefreshing;
             MyRecipesViewModel.Instance.Initialize();
             lstRecipes.IsRefreshing = !lstRecipes.IsRefreshing;
+        }
+
+        private void Add_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new RecipeDetailView());
         }
     }
 }

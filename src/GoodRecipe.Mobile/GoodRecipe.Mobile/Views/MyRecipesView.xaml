@@ -11,24 +11,24 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.Content>
-        <!--<StackLayout Padding="5">
-            <SearchBar Placeholder="Pesquisar receita" Text="{Binding Search}" />
-        </StackLayout>-->
-        <StackLayout Padding="20">
-            <SearchBar Placeholder="Pesquisar receita" Text="{Binding Search}" />
-            <ListView x:Name="lstRecipes" ItemsSource="{Binding Recipes}" HasUnevenRows="True" 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_add_white_48dp.png"
+                     Order="Primary" Priority="1" Clicked="Add_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Padding="20">
+        <SearchBar Placeholder="Pesquisar receita" Text="{Binding Search}" />
+        <ListView x:Name="lstRecipes" ItemsSource="{Binding Recipes}" HasUnevenRows="True" 
                   GroupDisplayBinding="{Binding Key}" IsGroupingEnabled="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ImageCell Text="{Binding Title}"
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell Text="{Binding Title}"
                                Detail="{Binding Category.Title}"
                                ImageSource="{Binding Picture, Converter={StaticResource imageConvert}}"
                                TextColor="Black"
                                DetailColor="Gray"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ContentPage.Content>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>

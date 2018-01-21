@@ -3,7 +3,8 @@ using GoodRecipe.Mobile.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace GoodRecipe.Mobile.ViewModels
 {
@@ -24,6 +25,8 @@ namespace GoodRecipe.Mobile.ViewModels
 
         public void Initialize()
         {
+            OnNovoCMD = new Command(OnNovo);
+
             SourceRecipes = RecipeRepository.GetRecipesGroup();
 
             Filter();
@@ -71,6 +74,13 @@ namespace GoodRecipe.Mobile.ViewModels
                 if (index + 1 > Recipes.Count || !Recipes[index].Equals(item))
                     Recipes.Insert(index, item);
             }
+        }
+
+        public ICommand OnNovoCMD { get; private set; }
+        private void OnNovo()
+        {
+            App.Current.MainPage.Navigation.PushAsync(
+                new Views.RecipeDetailView(), true);
         }
     }
 }

@@ -8,6 +8,6 @@
 
     <views:CatalogView Title="Home"  Icon="ic_home_black_48dp.png"/>
     <views:SearchView Title="Busca" Icon="ic_search_black_48dp.png"/>
-    <views:MyRecipesView Title="Receitas" Icon="ic_receipt_black_48dp.png"/>
+    <views:MyRecipesView Title="Receitas" Icon="ic_receipt_black_48dp.png" />
     <views:SettingsView Title="Perfil" Icon="ic_perm_identity_black_48dp.png"/>
 </naxam:BottomTabbedPage>
