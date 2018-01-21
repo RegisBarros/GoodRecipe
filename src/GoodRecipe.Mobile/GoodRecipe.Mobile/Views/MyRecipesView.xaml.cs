@@ -13,9 +13,18 @@ namespace GoodRecipe.Mobile.Views
 		{
 			InitializeComponent ();
 
-            ViewModel = new MyRecipesViewModel();
+            ViewModel = MyRecipesViewModel.Instance;
 
             BindingContext = ViewModel;
 		}
-	}
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            lstRecipes.IsRefreshing = !lstRecipes.IsRefreshing;
+            MyRecipesViewModel.Instance.Initialize();
+            lstRecipes.IsRefreshing = !lstRecipes.IsRefreshing;
+        }
+    }
 }

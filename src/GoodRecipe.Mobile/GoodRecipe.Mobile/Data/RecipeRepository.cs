@@ -1,7 +1,6 @@
 ﻿using GoodRecipe.Mobile.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace GoodRecipe.Mobile.Data
@@ -104,14 +103,14 @@ namespace GoodRecipe.Mobile.Data
             }
         }
 
-        public ObservableCollection<Grouping<string, Recipe>> GetRecipesGroup()
+        public List<Grouping<string, Recipe>> GetRecipesGroup()
         {
             var sorted = from recipe in AllRecipes
                          orderby recipe.Title
                          group recipe by recipe.TitleSort into recipeGroup
                          select new Grouping<string, Recipe>(recipeGroup.Key, recipeGroup);
 
-           return new ObservableCollection<Grouping<string, Recipe>>(sorted);
+           return new List<Grouping<string, Recipe>>(sorted);
         }
     }
 }

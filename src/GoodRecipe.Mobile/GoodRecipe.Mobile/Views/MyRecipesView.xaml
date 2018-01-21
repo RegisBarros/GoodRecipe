@@ -10,18 +10,25 @@
             <converter:RecipeToImageValueConverter x:Key="imageConvert" Assembly="GoodRecipe.Mobile.Images" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout Padding="20">
-        <ListView ItemsSource="{Binding Recipes}" HasUnevenRows="True" 
+
+    <ContentPage.Content>
+        <!--<StackLayout Padding="5">
+            <SearchBar Placeholder="Pesquisar receita" Text="{Binding Search}" />
+        </StackLayout>-->
+        <StackLayout Padding="20">
+            <SearchBar Placeholder="Pesquisar receita" Text="{Binding Search}" />
+            <ListView x:Name="lstRecipes" ItemsSource="{Binding Recipes}" HasUnevenRows="True" 
                   GroupDisplayBinding="{Binding Key}" IsGroupingEnabled="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ImageCell Text="{Binding Title}"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell Text="{Binding Title}"
                                Detail="{Binding Category.Title}"
                                ImageSource="{Binding Picture, Converter={StaticResource imageConvert}}"
                                TextColor="Black"
                                DetailColor="Gray"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
