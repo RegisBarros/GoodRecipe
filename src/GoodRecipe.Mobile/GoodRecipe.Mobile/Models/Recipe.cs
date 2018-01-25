@@ -14,8 +14,6 @@
 
         public string MealType { get; set; }
 
-        public string Difficulty { get; set; }
-
         public string Ingredients { get; set; }
 
         public string Directions { get; set; }

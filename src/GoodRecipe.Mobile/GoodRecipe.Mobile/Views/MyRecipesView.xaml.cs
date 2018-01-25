@@ -30,7 +30,7 @@ namespace GoodRecipe.Mobile.Views
 
         private void Add_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new RecipeDetailView());
+            Navigation.PushAsync(new EditRecipeView());
         }
     }
 }

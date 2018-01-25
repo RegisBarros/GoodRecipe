@@ -1,10 +1,23 @@
-﻿namespace GoodRecipe.Mobile.Models
+﻿using System.Collections.Generic;
+
+namespace GoodRecipe.Mobile.Models
 {
-    public static class MealType
+    public class MealType
     {
-        public static string Breakfast = "Breakfast";
-        public static string Lunch = "Lunch";
-        public static string Dinner = "Dinner";
-        public static string Snack = "Snack";
+        public static string Breakfast = "Café da Manhã";
+        public static string Lunch = "Almoço";
+        public static string Dinner = "Jantar";
+        public static string Snack = "Lanche";
+
+        public static List<string> GetMealsType()
+        {
+            return new List<string>
+            {
+               Breakfast,
+               Lunch,
+               Dinner,
+               Snack
+            };
+        }
     }
 }
