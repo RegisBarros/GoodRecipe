@@ -1,13 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:GoodRecipe.Mobile.Converters"
              x:Class="GoodRecipe.Mobile.Views.CatalogView"
              Icon="ic_home_black_48dp.png">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:RecipeToImageValueConverter x:Key="imageConvert" Assembly="GoodRecipe.Mobile.Images" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Aqui será aprensentado as receitas em destaque"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ListView x:Name="lstRecipes" ItemsSource="{Binding Recipes}" 
+                  GroupDisplayBinding="{Binding Key}"
+                  IsGroupingEnabled="True" SeparatorVisibility="None"
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ContentView Margin="10">
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="100" />
+                                    <RowDefinition Height="5" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <BoxView Color="#3F51B5"
+                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
+
+                                <Label Text="{Binding MealType}" TextColor="White" 
+										FontSize="Large" VerticalTextAlignment="Center" Margin="10,0,0,0"
+										Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+                                <Image BackgroundColor="Gray" Aspect="AspectFill" 
+                                    Source="{Binding Picture, Converter={StaticResource imageConvert}}"   
+								    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" />
+
+                                <BoxView Color="#757575" Opacity=".25"
+								    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" />
+
+                                <Label Text="{Binding Title}" TextColor="White" 
+								    Margin="-30,5,0,0" FontSize="28" FontAttributes="Bold"
+								    Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+                                <BoxView Color="#F6F6F6"
+								    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" />
+
+                                <Label Text="{Binding ReadyInTime, StringFormat='{0} prep'}" Margin="10,5,0,0" 
+								    FontSize="Small" TextColor="#757575"
+								    Grid.Row="3" Grid.Column="0" />
+
+                                <Label Text="{Binding Category.Title}" Margin="0,5,0,0" 
+								    FontSize="Small" TextColor="#757575"
+								    Grid.Row="3" Grid.Column="1" />
+
+                                <Label Text="{Binding NumberOfServings, StringFormat='serves {0}'}" Margin="0,5,0,0" 
+								    FontSize="Small" TextColor="#757575"
+								    Grid.Row="3" Grid.Column="2" />
+
+                                <Label Text="View Recipe >" Font="Micro" HorizontalTextAlignment="End" 
+								    Margin="0,5,10,0" TextColor="#4CAF50" FontAttributes="Bold"
+								    Grid.Row="4" Grid.Column="2" />
+                            </Grid>
+                        </ContentView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

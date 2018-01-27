@@ -19,8 +19,6 @@ namespace GoodRecipe.Mobile.Models
 
         public int NumberOfServings { get; set; }
 
-        public bool WillMakeAgain { get; set; }
-
         public string MealType { get; set; }
 
         public string Ingredients { get; set; }
