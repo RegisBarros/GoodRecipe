@@ -1,8 +1,17 @@
-﻿namespace GoodRecipe.Mobile.Models
+﻿using System.IO;
+
+namespace GoodRecipe.Mobile.Models
 {
-    public class Recipe
+    public class Recipe : BaseModel
     {
-        public string Title { get; set; }
+        private string _title;
+
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
+
 
         public string Description { get; set; }
 
@@ -19,6 +28,14 @@
         public string Directions { get; set; }
 
         public string Picture { get; set; }
+
+        private byte[] _pictureStream;
+
+        public byte[] PictureStream
+        {
+            get { return _pictureStream; }
+            set { SetProperty(ref _pictureStream, value); }
+        }
 
         public bool IsRecommended { get; set; }
 

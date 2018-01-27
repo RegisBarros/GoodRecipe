@@ -13,7 +13,7 @@ namespace GoodRecipe.Mobile.Views
 		{
 			InitializeComponent ();
 
-            BindingContext = EditRecipeViewModel.Instancia;
+            BindingContext = new EditRecipeViewModel();
 		}
-	}
+    }
 }

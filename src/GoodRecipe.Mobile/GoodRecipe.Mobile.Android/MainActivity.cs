@@ -6,6 +6,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using System.IO;
+using System.Threading.Tasks;
+using Android.Content;
 
 namespace GoodRecipe.Mobile.Droid
 {

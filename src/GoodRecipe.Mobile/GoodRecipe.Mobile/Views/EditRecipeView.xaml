@@ -7,6 +7,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:TypeToObjectConverter x:Key="TypeToObjectConverter" />
+            <converter:RecipeToImageValueConverter x:Key="imageConvert" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -15,12 +16,24 @@
                      CommandParameter="{Binding Recipe}" Order="Primary" Priority="1" />
         <ToolbarItem Text="Cancelar" Command="{Binding CancelRegisterCommand}" Order="Primary" Priority="2" />
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <TableView Intent="Form" HasUnevenRows="True">
             <TableView.Root>
+                <TableSection Title="Foto">
+                    <ViewCell>
+                        <StackLayout Padding="12">
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="Arquivo" Command="{Binding PickPictureCommand}" />
+                                <Button Text="Camera" Command="{Binding TakePhotoPictureCommand}" />
+                            </StackLayout>
+                            <Image HeightRequest="200" 
+                                   Source="{Binding ImageSource, Mode=TwoWay}" />
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
                 <TableSection Title="Informações">
-                    <EntryCell Label="Titulo" Text="{Binding Recipe.Title}"/>
+                    <EntryCell Label="Titulo" Text="{Binding Recipe.Title, Mode=TwoWay}"/>
                     <EntryCell Label="Descrição" Text="{Binding Recipe.Description}" />
                     <EntryCell Label="Tempo" Text="{Binding Recipe.ReadyInTime}"/>
                     <ViewCell>

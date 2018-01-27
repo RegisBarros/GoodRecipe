@@ -1,7 +1,11 @@
 ﻿using GoodRecipe.Mobile.Commands;
 using GoodRecipe.Mobile.Data;
+using GoodRecipe.Mobile.Helpers;
 using GoodRecipe.Mobile.Models;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -10,18 +14,18 @@ namespace GoodRecipe.Mobile.ViewModels
 {
     public class EditRecipeViewModel : BaseViewModel
     {
-        static EditRecipeViewModel instancia = new EditRecipeViewModel();
-        public static EditRecipeViewModel Instancia
-        {
-            get { return instancia; }
-            private set { instancia = value; }
-        }
-
         private Recipe recipe;
         public Recipe Recipe
         {
             get { return recipe; }
             set { SetProperty(ref recipe, value); }
+        }
+
+        private ImageSource _imageSource;
+        public ImageSource ImageSource
+        {
+            get { return _imageSource; }
+            set { SetProperty(ref _imageSource, value); }
         }
 
         public IEnumerable<Category> Categories { get; private set; }
@@ -33,7 +37,11 @@ namespace GoodRecipe.Mobile.ViewModels
         #region Commands
         public RegisterRecipeCommand RegisterRecipeCommand => new RegisterRecipeCommand(this);
 
-        public ICommand CancelRegisterCommand => new Command(async () => await Cancel()); 
+        public ICommand CancelRegisterCommand => new Command(async () => await Cancel());
+
+        public ICommand PickPictureCommand => new Command(async () => await PickPicture());
+
+        public ICommand TakePhotoPictureCommand => new Command(async () => await TakePhotoPicture());
         #endregion
 
         public EditRecipeViewModel()
@@ -51,6 +59,40 @@ namespace GoodRecipe.Mobile.ViewModels
         public async Task Cancel()
         {
             await Application.Current.MainPage.Navigation.PopAsync();
+        }
+
+        public async Task PickPicture()
+        {
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+                return;
+
+            var file = await CrossMedia.Current.PickPhotoAsync();
+
+            if (file == null)
+                return;
+
+            ImageSource = ImageSource.FromStream(() => file.GetStream());
+
+            Stream streamFile = file.GetStream();
+            Recipe.PictureStream = streamFile.ToByteArray();
+        }
+
+        public async Task TakePhotoPicture()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                return;
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions() { });
+
+            if (file == null)
+                return;
+
+            ImageSource = ImageSource.FromStream(() => file.GetStream());
+
+            Stream streamFile = file.GetStream();
+            Recipe.PictureStream = streamFile.ToByteArray();
         }
     }
 }
